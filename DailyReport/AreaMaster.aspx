@@ -6,38 +6,43 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
-        .bg {
+        /*.bg {*/
             /* Background pattern from Toptal Subtle Patterns */
-            height: 400px;
+            /*height: 400px;
             width: 100%;
             background-image: url("C:\Users\Amol\source\repos\DailyReport\DailyReport\Images\baground.png");
-        }
+        }*/
     </style>
 
 
-    <div class="card col">
+    <div class="card">
         <div class="card-header">
             Area Master
         </div>
         <div class="card-body">
 
-            <div class="row">
-                <div class="col-sm-1">
+            <div class="row table-row">
+                <div class="col-lg-3 col-sm-12">
                     <asp:Label CssClass="form-control" runat="server" ID="lblArea" Text="Area"></asp:Label>
 
                 </div>
-                <div class="col-sm-3">
+                <div class="col-lg-6 col-sm-12">
                     <asp:TextBox CssClass="form-control" ID="txtarea" runat="server"></asp:TextBox>
                 </div>
-                <div class="col-sm-3">
-                    <asp:Button ID="btnsave" CssClass="btn btn-danger" runat="server" Text="Save" OnClick="btnsave_Click" />
+                <div class="col-lg-3 col-sm-12">
+                    <asp:Button ID="btnsave" CssClass="btn btn-danger area-btn" runat="server" Text="Save" OnClick="btnsave_Click" />
                     <asp:Label ID="lblerror" runat="server" ForeColor="Red"> </asp:Label>
                 </div>
 
             </div>
             <br />
             <div>
-                <asp:GridView CssClass="table table-bordered table-responsive" ID="grdarea" runat="server"></asp:GridView>
+
+
+
+                <asp:GridView CssClass="table area-table row col mx-auto table-hover table-bordered-black" ID="grdarea" runat="server">
+                </asp:GridView>
+
             </div>
 
         </div>

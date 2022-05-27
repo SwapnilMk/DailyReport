@@ -33,6 +33,15 @@ namespace DailyReport
         protected global::System.Web.UI.WebControls.DropDownList ddlArea;
 
         /// <summary>
+        /// lblcustomername control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblcustomername;
+
+        /// <summary>
         /// txtCustomername control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace DailyReport
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCustomername;
+
+        /// <summary>
+        /// lbladdress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbladdress;
 
         /// <summary>
         /// txtaddress control.
@@ -51,6 +69,15 @@ namespace DailyReport
         protected global::System.Web.UI.WebControls.TextBox txtaddress;
 
         /// <summary>
+        /// lblcontact control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblcontact;
+
+        /// <summary>
         /// txtContact control.
         /// </summary>
         /// <remarks>
@@ -58,24 +85,6 @@ namespace DailyReport
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtContact;
-
-        /// <summary>
-        /// divrate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divrate;
-
-        /// <summary>
-        /// txtrate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtrate;
 
         /// <summary>
         /// Label1 control.
@@ -103,6 +112,24 @@ namespace DailyReport
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblerror;
+
+        /// <summary>
+        /// divrate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divrate;
+
+        /// <summary>
+        /// txtrate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtrate;
 
         /// <summary>
         /// grdcustomer control.

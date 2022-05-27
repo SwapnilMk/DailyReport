@@ -73,7 +73,7 @@
     <asp:UpdatePanel ID="up1" runat="server"> 
 <ContentTemplate>
     <div class="card col d-flex justify-content-center" style="width:100%;">
-  <div class="card-header text-black bg-danger">
+  <div class="card-header">
    Daily Entry
   </div>
 
@@ -137,7 +137,7 @@
         <asp:GridView CssClass="table table-responsive" ID="grditem" runat="server" AutoGenerateColumns="false" OnRowDeleting="grditem_RowDeleting" DataKeyNames="id">
             <Columns>
              <asp:BoundField DataField="id" HeaderText="id" Visible="false" />
-                <asp:BoundField DataField="ItemId" HeaderText="ItemId" Visible="false"  />
+                <asp:BoundField DataField="ItemId" HeaderText="ItemId" />
 <asp:BoundField DataField="ItemName" HeaderText="Item Name" />
 <asp:BoundField DataField="Qty" HeaderText="Qty" />
 <asp:BoundField DataField="Rate" HeaderText="Rate" />

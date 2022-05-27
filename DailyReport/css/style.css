@@ -1,19 +1,29 @@
-﻿@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+﻿/*import Font here*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;1,200&display=swap');
 
+/*Google Material Icons*/
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 200, 'opsz' 48;
+    font-size: 48px;
+}
+
+    .material-symbols-outlined:hover {
+        font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 200, 'opsz' 48;
+        font-size: 50px;
+    }
 
 
 :root {
-    --font-family: "Lato", sans-serif;
+    --font-family: 'Montserrat', sans-serif;
     --nav-background: #15133C;
-    --nav-font-color: #dddddd;
-    --background-color: #ffffff;
-    --card-header-background: #EC994B;
+    --background-color: #f4f3ef;
     --card-header-font-color: #283148;
     --card-body-background: #FFD9C0;
     --footer-backgrond-color: #15133C;
-    --footer-link-color: #79DAE8;
+    --footer-link-color: #f17421;
 }
 
+/*Reset layout*/
 * {
     margin: 0;
     padding: 0;
@@ -21,9 +31,17 @@
 }
 
 
+body, .card {
+    background-color: var(--background-color);
+    padding: 0;
+    margin: 0;
+}
+
+
 /*fixed navbar*/
 .navbar {
-    background-color: var(--nav-background) !important;
+    background-color: var(--background-color) !important;
+    border-bottom: 1px solid #d9dada !important;
     height: fit-content;
     border: none;
     display: flex;
@@ -32,140 +50,299 @@
     margin-bottom: 0px !important;
 }
 
-
-nav .navbar-brand {
-    font-size: 18px;
-    font-weight: 400;
-    padding-left: 20px;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    font-family: "Lato", sans-serif;
-}
-
 nav .nav-item {
     margin: 0px 3px;
 }
 
-    nav .nav-item a {
-        letter-spacing: 1px;
-        font-size: 12px;
+nav .navbar-brand {
+    color: #66615b !important;
+    font-family: var(--font-family);
+    font-size: 20px;
+    font-weight: 400;
+    padding-left: 20px;
+    line-height: 26px;
+    letter-spacing: 2px;
+}
+
+nav .nav-item a {
+    color: #9b9793 !important;
+    line-height: 21px;
+    font-size: 12px;
+}
+
+    nav .nav-item a:hover {
+        color: #2ac7ca !important;
+        line-height: 21px;
+        font-size: 13px;
     }
+
+
+
 
 
 /*card*/
 
-.card{
-    border: none !important;
+.card {
+    border: none;
     height: 86% !important;
-    
 }
 
 
-
-.card .card-header {
-    background-color: var(--card-header-background) !important;
-    color: var(--card-header-font-color) !important;
-    height: fit-content;
-    text-align: center;
-    font-weight: 600;
-    padding: 3px;
-    font-size: 13px;
-    letter-spacing: 1px;
-    word-spacing: 4px;
- 
-}
+    .card .card-header {
+        background-color: #f4f3ef;
+        padding-bottom: 0px;
+        padding-top: 0px;
+        margin-top: 30px;
+        background-color: #f4f3ef;
+        font-family: var(--font-family);
+        font-size: 15px;
+        letter-spacing: 2px;
+        padding-left: 50px !important;
+        line-height: 31px;
+        color: #252422;
+        font-weight: 500;
+        border: none;
+    }
 
 .card-body {
-
+    padding: 0px 10px 10px 10px !important;
     height: fit-content;
     padding: 1rem;
 }
 
+
+
+
+
+.row {
+    height: fit-content;
+    margin: 0;
+    font-size: 13px;
+}
+
+
+
+
+
+
+
+
+    /*Adminpanel page*/
+
+    .row .panel {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 11vh;
+        margin: 8px;
+        border: none;
+        font-size: 13px;
+        font-weight: 300;
+        letter-spacing: 2px;
+        border-radius: 20px;
+        border: 1px solid #d9dada !important;
+        box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+        transition: transform .3s cubic-bezier(.34,2,.6,1),box-shadow .2s ease;
+    }
+
+
+        .row .panel label {
+            margin: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+.panel .panel-heading {
+    font-size: 12px;
+}
+
+.panel .panel-count {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+
+/*floating button for modal*/
 #floating-btn {
     position: fixed;
     right: 0;
-    top: 300;
-    padding: 8px 30px;
+    top: 450;
+    padding: 6px 15px;
     border: none;
     background-color: rgba(120, 120, 120, 0.5);
     border-radius: 20px 0px 0px 20px;
 }
 
 
-.row{
+/*modal*/
+.modal .modal-header {
+    font-size: 12px;
+}
+
+
+.graph-col {
+    margin: 20px 0px 20px 0px;
+    width: 100%;
+    overflow-y: auto;
+   
+    border-radius: 12px;
+    box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+    transition: transform .3s cubic-bezier(.34,2,.6,1),box-shadow .2s ease;
+}
+
+  .graph-col .row {
+        margin: 10px;
+        justify-content: end !important;
+        border: 1px solid #d9dada !important;
+        border-radius: 10px;
+        height: 350px;
+    }
+
+    .graph-col .row .col-md-6 {
+        padding:0;
+        border-right: 1px solid #d9dada !important;
+    }
+
+    .graph-col .chartform{
+        display: flex;
+        justify-content: flex-end;
+
+    }
+
+
+
+.card .row .form-select {
+    width: auto !important;
+}
+
+.graph-col select{
     height: fit-content;
 }
 
 
-    .row .panel {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        height: 8vh;
-        margin: 8px;
-        border: none;
-        border-radius: 15px;
-        font-size: 13px;
-        font-weight: 700;
-        letter-spacing: 2px;
-        margin-top: 13px;
-        box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; 
-    }
 
-.graph-col {
-    margin-top: 13px;
-    overflow-y: auto;
-    max-height: 100vh;
-    box-shadow: rgb(0 0 0 / 25%) 0px 54px 55px, rgb(0 0 0 / 12%) 0px -12px 30px, rgb(0 0 0 / 12%) 0px 4px 6px, rgb(0 0 0 / 17%) 0px 12px 13px, rgb(0 0 0 / 9%) 0px -3px 5px;
+.graph-col #datewise_chart {
+    box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+}
+
+.graph-col #Productwise_chart {
+    box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
 }
 
 
-
-.graph-col .row .dropdown{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin: 50px 0px 50px 0px;
-
-}
-
-
-.row .panel label {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-}
-
-.row #btnupload {
+/*.row #btnupload {
     height: 5vh;
     width: auto;
+}*/
+
+/*  .graph-col .row .dropdown {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .graph-col .dropdown button{
+        background-color: #47cbcd;
+        border: none;
+        width: 120px;
+        height: 35px;
+        font-size: 13px;
+        border-radius: 30px !important;
+
+    }*/
+
+
+/*admin panel page end here*/
+
+
+
+
+
+
+
+
+/*area Master Page*/
+.table-row {
+    margin-top: 10px !important;
+    grid-row-gap: 20px;
 }
+
+.card .area-table {
+    margin: 20px 0px 20px 0px;
+    overflow: auto;
+    height: 91%;
+    border: 1px solid #d9dada !important;
+    border-radius: 12px;
+    box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+    transition: transform .3s cubic-bezier(.34,2,.6,1),box-shadow .2s ease;
+}
+
+.card .table-row .area-btn {
+    width: inherit;
+    background-color: #47cbcd;
+    border: none;
+    height: 40px;
+    border-radius: 20px !important;
+}
+
+/*area master page end here*/
+
+
+/*Item master page*/
+.card-body .item-row {
+    margin: 50px 30px;
+}
+
+.item-row .btn {
+    color: #ffffff;
+    border: none;
+    border-radius: 15px !important;
+}
+
+.item-row .savebtn {
+    background-color: #f47e61;
+}
+
+.item-row .exportbtn {
+    background-color: #76d7a9;
+}
+
+/*Item master page end here*/
+
+
+
+/*entry page*/
+.card-body .customer-row {
+    margin: 50px;
+}
+
+/*entry page end here*/
+
+
+
 
 
 
 
 /*footer*/
-
 .page-footer {
     height: 5vh !important;
-    background-color: var(--footer-backgrond-color);
+    border-top: 1px solid #d9dada !important;
 }
-
 
 footer .footer-copyright {
     color: var(--nav-font-color);
-    font-size: 12px;
-    letter-spacing: 1px;
-    word-spacing: 2px;
-    font-weight: 400;
-    opacity: 0.8;
+    font-size: 11px;
+    word-spacing: 1px;
+    font-weight: 300;
+    opacity: 0.9;
 }
 
 footer a {
     color: var(--footer-link-color) !important;
-    margin-left:8px;
     letter-spacing: 1px;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 

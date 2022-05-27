@@ -12,7 +12,7 @@ namespace DailyReport
 {
     public partial class Adminpanel : System.Web.UI.Page
     {
-          static string connStr = System.Configuration.ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+        static string connStr = System.Configuration.ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,7 +28,7 @@ namespace DailyReport
             try
             {
 
-              
+
 
                 using (SqlConnection conn = new SqlConnection())
                 {
@@ -53,7 +53,7 @@ namespace DailyReport
             catch (Exception ex)
             {
                 lblerror.Text = ex.Message;
-            
+
             }
         }
 
@@ -71,7 +71,7 @@ namespace DailyReport
             {
                 string commandtext = "";
 
-                commandtext="GetCharts";
+                commandtext = "GetCharts";
                 using (SqlCommand cmd = new SqlCommand(commandtext, con))
                 {
                     con.Open();
@@ -95,12 +95,12 @@ namespace DailyReport
                     return serializer.Serialize(rows);
                 }
             }
-        
-          
+
+
         }
 
-       
-    
+
+
 
 
 

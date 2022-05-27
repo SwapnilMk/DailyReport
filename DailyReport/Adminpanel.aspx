@@ -3,32 +3,110 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script type="text/javascript">
 
         var jsodata = "";
-        google.charts.load("current", { packages: ['corechart'] });
 
 
         function functionToExecute() {
             document.getElementById("chartmsg").innerHTML +=
                 "<h3>This is the text which has been inserted by JS</h3>";
-
         }
 
 
-        function JqueryAjaxCall() {
+        function getComboA(sel) {
+            var value = sel.value;
+
+            google.load('visualization', '1.0', { 'packages': ['corechart'], 'callback': drawCharts });
+
+            function drawCharts() {
+
+                BindChart("Datewise", value);
+
+
+                //BindChart("Datewise", value);
+
+                // BindChart("Customerwise", "piechart");
+            }
+        }
+
+        function getComboB(sel) {
+            var value = sel.value;
+
+            google.load('visualization', '1.0', { 'packages': ['corechart'], 'callback': drawCharts });
+
+            function drawCharts() {
+
+                BindChart("Productwise", value);
+
+
+                //BindChart("Datewise", value);
+
+                // BindChart("Customerwise", "piechart");
+            }
+        }
+        function getComboC(sel) {
+            var value = sel.value;
+
+            google.load('visualization', '1.0', { 'packages': ['corechart'], 'callback': drawCharts });
+
+            function drawCharts() {
+
+                BindChart("Customerwise", value);
+
+
+                //BindChart("Datewise", value);
+
+                // BindChart("Customerwise", "piechart");
+            }
+        }
+
+
+        $(document).ready(function () {
+            //google.charts.load("current", { packages: ['corechart'] });
+            $('#lbltotalamount').val("100");
+            $('#lbltotalcustomer').val("100");
+
+            google.load('visualization', '1.0', { 'packages': ['corechart'], 'callback': drawCharts });
+
+            function drawCharts() {
+
+                // BindChart("Productwise", "Columnchart");
+
+                BindChart("Datewise", "piechart");
+
+                //BindChart("Customerwise", "piechart");
+            }
+
+
+
+
+        });
+
+        $("Datewise").scroll(function () {
+            alert("hiii");
+            BindChart("Datewise", "piechart");
+        });
+
+
+
+        function BindChart(chartid, charttype) {
             var pageUrl = '<%= ResolveUrl("~/Adminpanel.aspx/jqueryAjaxCall") %>';
 
             var ddlFruits = $("[id*=ddlitem]");
             var selectedText = ddlFruits.find("option:selected").text();
             var selectedValue = ddlFruits.val();
             var companyname = $('input[id$=hdncompany]').val();
-            var Type = selectedValue;
+            var Type = chartid;
             var lastName = "Raut";
 
+            $('#hdncharttype').val(charttype);
+            $('#hdnchartid').val(chartid);
             var formData = new FormData();
             var totalFiles = document.getElementById("FileUpload").files.length;
 
@@ -88,25 +166,34 @@
 
                 var view = new google.visualization.DataView(data);
 
-                var ddlFruits = $("[id*=ddlitem]");
-                var selectedText = ddlFruits.find("option:selected").text();
-                var selectedValue = ddlFruits.val();
 
                 var options = {
-                    title: selectedText,
-                    //width: 800,
-                    //height: 400,
+                    title: $('#hdnchartid').val(),
+                    //width: 400,
+                    height: 300,
                     bar: { groupWidth: "95%" },
                     legend: { position: "none" },
 
                 };
-                var chart = new google.visualization.ColumnChart(document.getElementById("Datewise_chart"));
 
-                chart.draw(view, options);
 
-                var chart = new google.visualization.PieChart(document.getElementById("Productwise_chart"));
+                charttype = $('#hdncharttype').val();
+                if (charttype == 'ColumnChart') {
+                    var chart = new google.visualization.ColumnChart(document.getElementById($('#hdnchartid').val()));
+                    chart.draw(view, options);
 
-                chart.draw(view, options);
+                } else if (charttype == 'piechart') {
+
+                    var chart = new google.visualization.PieChart(document.getElementById($('#hdnchartid').val()));
+                    chart.draw(view, options);
+                }
+                else if (charttype == 'LineChart') {
+
+                    var chart = new google.visualization.LineChart(document.getElementById($('#hdnchartid').val()));
+                    chart.draw(view, options);
+                }
+
+
 
             }
             catch (ex) {
@@ -116,33 +203,6 @@
 
 
 
-        function upload1() {
-            var formData = new FormData();
-            var totalFiles = document.getElementById("FileUpload").files.length;
-
-            for (var i = 0; i < totalFiles; i++) {
-                var file = document.getElementById("FileUpload").files[i];
-
-                formData.append("FileUpload", file);
-                formData.append("guid", i);
-            }
-
-            $.ajax({
-                type: 'post',
-                url: '/adminpanel.aspx/Upload',
-                data: formData,
-                //dataType: 'json',
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    alert('succes!!');
-
-                },
-                error: function (error) {
-                    alert(error);
-                }
-            });
-        }
 
 
 
@@ -236,6 +296,8 @@
             Admin Panel
         </div>
         <div class="card-body">
+            <asp:HiddenField ID="hdncharttype" ClientIDMode="Static" runat="server" />
+            <asp:HiddenField ID="hdnchartid" ClientIDMode="Static" runat="server" />
 
             <div class="row" style="display: none">
                 <asp:HiddenField ID="hdncompany" runat="server" />
@@ -249,31 +311,46 @@
             </div>
 
 
-
-
             <div class="row">
                 <div class="panel col">
-                    <i class="fa-solid fa-wallet" style="font-size: 40px"></i>
-                    <label for="txtfromdate" class="col">Total Amount</label>
-            
+                    <span class="material-symbols-outlined" style="color: #fac121;">currency_rupee
+                    </span>
+                    <div class="col">
+                        <label for="txtfromdate" class="row panel-heading">Total Amount</label>
+                        <label class="row panel-count" id="lbltotalamount">amount</label>
+                    </div>
                 </div>
 
                 <div class="panel col">
-                    <i class="fa-solid fa-user-group" style="font-size: 40px"></i>
-                    <label for="txtToDate" class="col">Total Customer</label>
+                    <span class="material-symbols-outlined" style="color: #60d19c;">account_circle
+                    </span>
+
+                    <div class="col">
+                        <label for="txtToDate" class="row panel-heading">Total Customer</label>
+                        <label for="txtToDate" class="row panel-count" id="lbltotalcustomer">Customer</label>
+                    </div>
                 </div>
 
                 <div class="panel col">
-                    <i class="fa-solid fa-link" style="font-size: 40px"></i>
-                    <label for="ddlitem" class="col">Order Link</label>
+                    <span class="material-symbols-outlined" style="color: #ef7400;">link
+                    </span>
+                    <div class="col">
+                        <label for="ddlitem" class="row panel-heading">Order Link</label>
+                        <label for="ddlitem" class="row panel-count" id="lblorderlink">Link</label>
+                    </div>
 
 
                 </div>
 
                 <div class="panel col">
-                    <i class="fa-solid fa-link" style="font-size: 40px"></i>
-                    <label for="" class="col">Order Link</label>
+                    <span class="material-symbols-outlined" style="color: #00c7ca;">public
+                    </span>
+                    <div class="col">
 
+                        <label for="" class="row panel-heading">Order Link</label>
+                        <label for="" class="row panel-count" id="">Link</label>
+
+                    </div>
                 </div>
 
             </div>
@@ -282,114 +359,52 @@
 
             <div class="card col graph-col">
                 <div class="row">
-                    <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-    Select
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><a class="dropdown-item" href="#">chart1</a></li>
-    <li><a class="dropdown-item" href="#">chart2</a></li>
-    <li><a class="dropdown-item" href="#">chart3</a></li>
-  </ul>
-</div>  
-                    <div id="Datewise_chart" class="col-lg-12">
-                        
-                         
-          </div>
 
 
-
-                        <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-    Select
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><a class="dropdown-item" href="#">chart1</a></li>
-    <li><a class="dropdown-item" href="#">chart2</a></li>
-    <li><a class="dropdown-item" href="#">chart3</a></li>
-  </ul>
-</div>
-                    <div id="Productwise_chart" class="col-lg-6">
-
+                    <select class="form-select form-select-sm" id="comboA" onchange="getComboA(this)">
+                        <option value="">Select combo</option>
+                        <option value="ColumnChart">ColumnChart</option>
+                        <option value="piechart">piechart</option>
+                        <option value="LineChart">LineChart</option>
+                    </select>
+                    <div id="Datewise" class="col-md-12">
                     </div>
-
                 </div>
 
 
 
 
-                <%-- <section style="background-color: #eee;">
-                    <div class="container py-5">
+                <div class="row">
 
-                        <div class="row d-flex justify-content-center">
-                            <div class="col-md-8 col-lg-6 col-xl-4">
+                    <div class="col-md-6">
+                        <div class="chartform">
 
-                                <div class="card" id="chat1" style="border-radius: 15px;">
-                                    <div
-                                        class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0"
-                                        style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
-                                        <i class="fas fa-angle-left"></i>
-                                        <p class="mb-0 fw-bold">live chat</p>
-                                        <i class="fas fa-times"></i>
-                                    </div>
-                                    <div class="card-body" id="chartmsg">
+                            <select class="form-select form-select-sm" id="comboB" onchange="getComboB(this)">
+                                <option value="">Select combo</option>
+                                <option value="ColumnChart">ColumnChart</option>
+                                <option value="piechart">piechart</option>
+                                <option value="LineChart">LineChart</option>
+                            </select>
+                        </div>
+                        <div id="Productwise">
+                        </div>
+                    </div>
 
-                                        <div class="d-flex flex-row justify-content-start mb-4">
-                                            <img src="https://mdbcdn.b-cdn.net/img/photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                                                alt="avatar 1" style="width: 45px; height: 100%;">
-                                            <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
-                                                <p class="small mb-0">
-                                                    hello and thank you for visiting mdbootstrap. please click the video
-                  below.
-                                                </p>
-                                            </div>
-                                        </div>
 
-                                        <div class="d-flex flex-row justify-content-end mb-4">
-                                            <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
-                                                <p class="small mb-0">thank you, i really like your product.</p>
-                                            </div>
-                                            <img src="https://mdbcdn.b-cdn.net/img/photos/new-templates/bootstrap-chat/ava2-bg.webp"
-                                                alt="avatar 1" style="width: 45px; height: 100%;">
-                                        </div>
-
-                                        <div class="d-flex flex-row justify-content-start mb-4">
-                                            <img src="https://mdbcdn.b-cdn.net/img/photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                                                alt="avatar 1" style="width: 45px; height: 100%;">
-                                            <div class="ms-3" style="border-radius: 15px;">
-                                                <div class="bg-image">
-                                                    <img src="https://mdbcdn.b-cdn.net/img/photos/new-templates/bootstrap-chat/screenshot1.webp"
-                                                        style="border-radius: 15px;" alt="video">
-                                                    <a href="#!">
-                                                        <div class="mask"></div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="d-flex flex-row justify-content-start mb-4">
-                                            <img src="https://mdbcdn.b-cdn.net/img/photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                                                alt="avatar 1" style="width: 45px; height: 100%;">
-                                            <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
-                                                <p class="small mb-0">...</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-outline">
-                                            <textarea class="form-control" id="textareaexample" rows="4"></textarea>
-                                            <label class="form-label" for="textareaexample">type your message</label>
-                                            <button id="btnsendmsg" class="btn btn-info" onclick="functiontoexecute()">send</button>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
+                    <div class="col-md-6">
+                        <div class="chartform">
+                        <select class="form-select form-select-sm" id="comboC" onchange="getComboC(this)">
+                            <option value="">Select combo</option>
+                            <option value="ColumnChart">ColumnChart</option>
+                            <option value="piechart">piechart</option>
+                            <option value="LineChart">LineChart</option>
+                        </select>
+                        </div>
+                        <div id="Customerwise">
                         </div>
 
                     </div>
-                </section>--%>
-                <!-- Button trigger modal -->
+                </div>
 
 
             </div>
@@ -397,57 +412,50 @@
 
 
         </div>
-            <button type="button" id="floating-btn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <lord-icon
-                    src="https://cdn.lordicon.com/ryyjawhw.json"
-                    trigger="hover"
-                    style="width: 30px; height: 30px">
-                </lord-icon>
-            </button>
+        <button type="button" id="floating-btn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <lord-icon
+                src="https://cdn.lordicon.com/ryyjawhw.json"
+                trigger="hover"
+                style="width: 30px; height: 30px">
+            </lord-icon>
+        </button>
 
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Select Duration</h5>
+        <!-- Modal -->
+        <div class="modal fade  modal-dialog-right" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Select Duration</h5>
 
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label for="txtfromdate" class="form-label">Form date</label>
+                            <asp:TextBox CssClass="form-control" placeholder="From Date" ID="txtfromdate" runat="server"></asp:TextBox>
+                            <cc1:CalendarExtender Format="dd/MMM/yyyy" ID="Calendar1" PopupPosition="TopLeft" PopupButtonID="imgPopup" runat="server" TargetControlID="txtfromdate"></cc1:CalendarExtender>
                         </div>
 
-                        <div class="modal-body">
-                           
-                                <div class="mb-3">
-                                    <label for="txtfromdate" class="form-label">Form date</label>
-                                    <asp:TextBox CssClass="form-control" placeholder="From Date" ID="txtfromdate" runat="server"></asp:TextBox>
-                                    <cc1:CalendarExtender Format="dd/MMM/yyyy" ID="Calendar1" PopupPosition="TopLeft" PopupButtonID="imgPopup" runat="server" TargetControlID="txtfromdate"></cc1:CalendarExtender>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="txtToDate" class="form-label">To date</label>
-                                    <asp:TextBox CssClass="form-control" placeholder="To Date" ID="txtToDate" runat="server"></asp:TextBox>
-                                    <cc1:CalendarExtender Format="dd/MMM/yyyy" ID="CalendarExtender1" PopupPosition="TopLeft" PopupButtonID="imgPopup" runat="server" TargetControlID="txtToDate"></cc1:CalendarExtender>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="ddlitem" class="form-label">select Item</label>
-                                        <asp:DropDownList CssClass="form-control" ID="ddlitem" runat="server">
-                                            <asp:ListItem Text="Datewise" Value="Datewise"></asp:ListItem>
-                                            <asp:ListItem Text="Productwise" Value="Productwise"></asp:ListItem>
-                                            <asp:ListItem Text="Customerwise" Value="Customerwise"></asp:ListItem>
-                                        </asp:DropDownList>
-                                        </div>
-                         
-
-
+                        <div class="mb-3">
+                            <label for="txtToDate" class="form-label">To date</label>
+                            <asp:TextBox CssClass="form-control" placeholder="To Date" ID="txtToDate" runat="server"></asp:TextBox>
+                            <cc1:CalendarExtender Format="dd/MMM/yyyy" ID="CalendarExtender1" PopupPosition="TopLeft" PopupButtonID="imgPopup" runat="server" TargetControlID="txtToDate"></cc1:CalendarExtender>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn bg-primary text-white" id="btnupload" onclick="JqueryAjaxCall(); return false;">Show</button>
-                        </div>
+
+
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn bg-primary text-white" id="btnupload" onclick="JqueryAjaxCall(); return false;">Show</button>
                     </div>
                 </div>
             </div>
+        </div>
 
     </div>
 </asp:Content>

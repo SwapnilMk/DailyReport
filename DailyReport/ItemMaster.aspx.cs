@@ -21,7 +21,7 @@ namespace DailyReport
         {
             if (!IsPostBack)
             {
-            //    bindarea();
+             bindarea();
             }
         }
 

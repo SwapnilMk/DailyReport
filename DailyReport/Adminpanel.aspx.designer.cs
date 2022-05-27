@@ -24,6 +24,24 @@ namespace DailyReport
         protected global::System.Web.UI.ScriptManager SCR1;
 
         /// <summary>
+        /// hdncharttype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdncharttype;
+
+        /// <summary>
+        /// hdnchartid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnchartid;
+
+        /// <summary>
         /// hdncompany control.
         /// </summary>
         /// <remarks>
@@ -103,14 +121,5 @@ namespace DailyReport
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
-
-        /// <summary>
-        /// ddlitem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlitem;
     }
 }
