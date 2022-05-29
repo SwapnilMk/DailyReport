@@ -17,7 +17,7 @@
                         </div>
                         <h5 class="card-title">Register Form</h5>
                     </div>
-                    <div class="card-body" style="height: 56vh">
+                    <div class="card-body" style="height: 66vh">
                         <form id="RegisterValidation" action="" method="" novalidate="novalidate" data-bitwarden-watching="1">
                             <div class="form-group bmd-form-group col">
                                 <label for="lblusername" class="bmd-label-floating">User Name *</label>
@@ -42,7 +42,20 @@
                                     <label for="lblweight" class="bmd-label-floating">Weight *</label>
                                     <input type="number" class="form-control" id="lblweight" required="true" name="password" aria-required="true">
                                 </div>
+
+                            </div> <div class="row">
+
+                                <div class="form-group bmd-form-group col">
+                                    <label for="lbldob" class="bmd-label-floating">Date Of Birth *</label>
+                                    <input type="date" class="form-control" id="lbldob" required="true" name="password" aria-required="true">
+                                </div>
+                                <div class="form-group bmd-form-group col">
+                                    <label for="lbljoiningdate" class="bmd-label-floating">Joining Date *</label>
+                                    <input type="date" class="form-control" id="lbljoiningdate" required="true" name="password" aria-required="true">
+                                </div>
                             </div>
+
+                            <div class="row">
 
 
                             <div class="form-group bmd-form-group dropdown col">
@@ -54,6 +67,7 @@
                                     <li><a class="dropdown-item" href="#">weight</a></li>
                                     <li><a class="dropdown-item" href="#">combo</a></li>
                                 </ul>
+                            </div>
                             </div>
 
 
