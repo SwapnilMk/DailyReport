@@ -161,6 +161,7 @@
     </Content>
     <Content Include="Test.aspx" />
     <Content Include="testing.aspx" />
+    <Content Include="UserRegistration.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
   </ItemGroup>
@@ -254,6 +255,13 @@
     </Compile>
     <Compile Include="testing.aspx.designer.cs">
       <DependentUpon>testing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserRegistration.aspx.cs">
+      <DependentUpon>UserRegistration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserRegistration.aspx.designer.cs">
+      <DependentUpon>UserRegistration.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>

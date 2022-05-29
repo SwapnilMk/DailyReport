@@ -7,17 +7,19 @@
     font-size: 48px;
 }
 
-    .material-symbols-outlined:hover {
+  /*  .material-symbols-outlined:hover {
         font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 200, 'opsz' 48;
         font-size: 50px;
     }
-
+*/
 
 :root {
     --font-family: 'Montserrat', sans-serif;
-    --nav-background: #15133C;
-    --background-color: #f4f3ef;
+    --nav-background: #ffffff;
     --card-header-font-color: #283148;
+    --background-color: #f7f7f8;
+    --panel-background-color: #ffffff;
+    --card-background: #ffffff;
     --card-body-background: #FFD9C0;
     --footer-backgrond-color: #15133C;
     --footer-link-color: #f17421;
@@ -40,7 +42,7 @@ body, .card {
 
 /*fixed navbar*/
 .navbar {
-    background-color: var(--background-color) !important;
+    background-color: var(--nav-background) !important;
     border-bottom: 1px solid #d9dada !important;
     height: fit-content;
     border: none;
@@ -89,18 +91,14 @@ nav .nav-item a {
 
 
     .card .card-header {
-        background-color: #f4f3ef;
-        padding-bottom: 0px;
-        padding-top: 0px;
-        margin-top: 30px;
-        background-color: #f4f3ef;
+        background-color: var(--background-color);
         font-family: var(--font-family);
         font-size: 15px;
         letter-spacing: 2px;
         padding-left: 50px !important;
         line-height: 31px;
         color: #252422;
-        font-weight: 500;
+        font-weight: 700;
         border: none;
     }
 
@@ -140,6 +138,7 @@ nav .nav-item a {
         font-weight: 300;
         letter-spacing: 2px;
         border-radius: 20px;
+        background-color: var(--panel-background-color);
         border: 1px solid #d9dada !important;
         box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
         transition: transform .3s cubic-bezier(.34,2,.6,1),box-shadow .2s ease;
@@ -182,32 +181,29 @@ nav .nav-item a {
 
 
 .graph-col {
-    margin: 20px 0px 20px 0px;
+    margin: 15px 0px 15px 0px;
     width: 100%;
     overflow-y: auto;
-   
-    border-radius: 12px;
-    box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
-    transition: transform .3s cubic-bezier(.34,2,.6,1),box-shadow .2s ease;
 }
 
-  .graph-col .row {
+    .graph-col .row {
         margin: 10px;
         justify-content: end !important;
+        background-color: var(--card-background);
         border: 1px solid #d9dada !important;
         border-radius: 10px;
         height: 350px;
     }
 
-    .graph-col .row .col-md-6 {
-        padding:0;
-        border-right: 1px solid #d9dada !important;
-    }
+        .graph-col .row .col-md-6 {
+            padding: 0;
+            border-right: 1px solid #d9dada !important;
+        }
 
-    .graph-col .chartform{
+    .graph-col .chartform {
         display: flex;
         justify-content: flex-end;
-
+        padding: 10px;
     }
 
 
@@ -216,7 +212,7 @@ nav .nav-item a {
     width: auto !important;
 }
 
-.graph-col select{
+.graph-col select {
     height: fit-content;
 }
 
@@ -351,4 +347,53 @@ footer a {
         width: 30vw;
         margin-left: 15vw;
     }
+}
+
+
+
+
+
+
+
+
+/*User registration page*/
+
+.user .card {
+    box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
+}
+
+.user .form-row {
+    justify-content: center;
+    margin-top: 5%;
+}
+
+
+.row .card .card-header-rose, .user .card-body, .user .card-footer {
+    background-color: #ffffff !important;
+}
+
+
+    
+
+
+.card-header .card-icon {
+    border-radius: 5px;
+    background-color: #e62366;
+    color: #ffff;
+    padding: 15px;
+    margin-top: -30px;
+    margin-right: 15px;
+    float: left;
+    box-shadow: 0 1px 4px 0 rgb(0 0 0 / 14%);
+}
+
+.card-icon span{
+    font-size: 25px;
+}
+
+.user .card-footer button {
+    color: #fff;
+    background-color: #e91e63;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px 0hsla(0,0%,60%,.14),0 3px 1px -2px hsla(0,0%,60%,.2),0 1px 5px 0 hsla(0,0%,60%,.12);
 }

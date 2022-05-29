@@ -359,7 +359,8 @@
 
             <div class="card col graph-col">
                 <div class="row">
-
+                <div class="col-md-12">
+                <div class="chartfrom" style="display: flex;justify-content: flex-end; padding: 10px;">
 
                     <select class="form-select form-select-sm" id="comboA" onchange="getComboA(this)">
                         <option value="">Select combo</option>
@@ -367,8 +368,10 @@
                         <option value="piechart">piechart</option>
                         <option value="LineChart">LineChart</option>
                     </select>
-                    <div id="Datewise" class="col-md-12">
                     </div>
+                    <div id="Datewise">
+                    </div>
+                </div>
                 </div>
 
 
